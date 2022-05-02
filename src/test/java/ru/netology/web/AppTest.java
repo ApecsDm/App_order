@@ -22,7 +22,7 @@ class AppTest {
     }
 
     @BeforeEach
-    void setUp2() {
+    public void setUp2() {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--disable-dev-shm-usage");
         options.addArguments("--no-sandbox");
