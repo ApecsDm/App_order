@@ -9,27 +9,34 @@ import static com.codeborne.selenide.Condition.exactText;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.open;
 
+import org.openqa.selenium.chrome.ChromeOptions;
+
 class AppTest {
 
-    /* private WebDriver driver;
+    private WebDriver driver;
 
 
     @BeforeAll
-     public void setUp() {
-        System.setProperty("webdriver.chrome.driver", "driver/win/chromedriver.exe");
+    static void setUp() {
+        System.setProperty("webdriver.chrome.driver", "/_Git Projects/App_order/driver/win/chromedriver.exe");
     }
 
     @BeforeEach
     void setUp2() {
-        driver = new ChromeDriver();
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--disable-dev-shm-usage");
+        options.addArguments("--no-sandbox");
+        options.addArguments("--headless");
+        driver = new ChromeDriver(options);
     }
 
     @AfterEach
     public void close () {
-    driver.quit();
-    driver=null;
+        if (driver != null) {
+            driver.quit();
+        }
     }
-    */
+
 
     @Test
     void  shouldSubmitRequest() {
@@ -41,6 +48,8 @@ class AppTest {
         form.$(".button__content").click();
         $("[data-test-id = order-success]").shouldHave(exactText("Ваша заявка успешно отправлена! Наш менеджер свяжется с вами в ближайшее время."));
     }
+
+
 
     @Test
     void  shouldAppearErrorMessage() {
